@@ -90,23 +90,27 @@ describe('Retain MCP server', () => {
     expect(url).toContain('limit=5');
   });
 
-  it('POSTs to the alert contacted endpoint', async () => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValue(
-        jsonResponse({ outreach_state: 'contacted', last_contacted_at: null }),
-      );
+  it('POSTs alert ids to the batch contacted endpoint', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(
+      jsonResponse({
+        summary: { succeeded: 2, failed: 0 },
+        results: [],
+      }),
+    );
     vi.stubGlobal('fetch', fetchMock);
 
     const client = await connectClient();
     await client.callTool({
       name: 'mark_alert_contacted',
-      arguments: { alert_id: 'a1' },
+      arguments: { alert_ids: ['a1', 'a2'] },
     });
 
     const [url, init] = fetchMock.mock.calls[0];
-    expect(url).toBe('https://api.retain.so/agent/alerts/a1/contacted');
+    expect(url).toBe('https://api.retain.so/agent/alerts/contacted');
     expect(init.method).toBe('POST');
+    expect(JSON.parse(init.body as string)).toEqual({
+      alert_ids: ['a1', 'a2'],
+    });
   });
 
   it('surfaces API errors as tool errors', async () => {

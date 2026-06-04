@@ -7,18 +7,22 @@ export function registerMarkAlertContacted(server: McpServer) {
   server.registerTool(
     'mark_alert_contacted',
     {
-      title: 'Mark alert as contacted',
+      title: 'Mark alerts as contacted',
       description:
-        'Advance an alert to the "contacted" outreach state with a timestamp. Requires a read+write agent key.',
+        'Advance one or more alerts to the "contacted" outreach state with a timestamp. Pass a single id to mark one alert, or several to mark them in one call. Requires a read+write agent key.',
       inputSchema: {
-        alert_id: z.string().describe('Alert id (UUID).'),
+        alert_ids: z
+          .array(z.string())
+          .min(1)
+          .max(100)
+          .describe('Alert ids (UUIDs). Pass one or many, up to 100.'),
       },
     },
-    async ({ alert_id }) => {
+    async ({ alert_ids }) => {
       try {
-        const data = await retain.post(
-          `/agent/alerts/${encodeURIComponent(alert_id)}/contacted`,
-        );
+        const data = await retain.post('/agent/alerts/contacted', {
+          alert_ids,
+        });
         return jsonContent(data);
       } catch (error) {
         return errorContent(error);

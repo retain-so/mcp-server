@@ -2,7 +2,7 @@
 
 Let your AI agent see who is about to churn, and do something about it.
 
-`@retain/mcp-server` connects [Retain](https://retain.so) to any MCP client (Claude Code, Claude Desktop, Cursor, Windsurf, and friends). Ask in plain English which customers are at risk, pull a customer's full health profile, check MRR at risk, and log outreach, all without opening the dashboard.
+`@retain/mcp-server` connects [Retain](https://retain.so) to any MCP client (Claude Code, Claude Desktop, Cursor, Windsurf, and friends). Ask in natural language which customers are at risk, pull a customer's full health profile, check MRR at risk, and log outreach, all without opening the dashboard.
 
 Retain is an AI-first churn prevention and customer analytics platform. This server is the bridge between your agent and your Retain data.
 
@@ -65,16 +65,16 @@ claude mcp add retain --env RETAIN_API_KEY=rk_agent_xxx -- npx -y @retain/mcp-se
 
 ## Tools
 
-| Tool | Type | What it does |
-|------|------|--------------|
-| `get_at_risk_customers` | read | Customers by churn risk (`Critical`/`High`/`Stable`/`Healthy`), ordered by MRR. Defaults to Critical + High. |
-| `get_customer_details` | read | Full profile for one customer by id or name. |
-| `get_mrr_at_risk` | read | Total MRR at risk plus active-alert counts by risk level. |
-| `get_active_alerts` | read | Active alerts by priority, with risk factors and outreach state. |
-| `get_churn_metrics` | read | Churn rate, MRR churned, expansion/contraction, net revenue retention. |
-| `add_customer_note` | write | Add a note to a customer's active alert. |
-| `mark_alert_contacted` | write | Mark an alert as contacted. |
-| `archive_alert` | write | Archive a resolved alert. |
+| Tool                    | Type  | What it does                                                                                                 |
+| ----------------------- | ----- | ------------------------------------------------------------------------------------------------------------ |
+| `get_at_risk_customers` | read  | Customers by churn risk (`Critical`/`High`/`Stable`/`Healthy`), ordered by MRR. Defaults to Critical + High. |
+| `get_customer_details`  | read  | Full profile for one customer by id or name.                                                                 |
+| `get_mrr_at_risk`       | read  | Total MRR at risk plus active-alert counts by risk level.                                                    |
+| `get_active_alerts`     | read  | Active alerts by priority, with risk factors and outreach state.                                             |
+| `get_churn_metrics`     | read  | Churn rate, MRR churned, expansion/contraction, net revenue retention.                                       |
+| `add_customer_note`     | write | Add a note to a customer's active alert.                                                                     |
+| `mark_alert_contacted`  | write | Mark an alert as contacted.                                                                                  |
+| `archive_alert`         | write | Archive a resolved alert.                                                                                    |
 
 Coming soon: `send_retention_email` (trigger a templated retention email).
 
@@ -82,18 +82,18 @@ Coming soon: `send_retention_email` (trigger a templated retention email).
 
 > **You:** Who's about to churn and how much money is on the line?
 >
-> **Agent:** *(calls `get_mrr_at_risk`, then `get_at_risk_customers`)* You have $4,200 MRR at risk across 7 active alerts. The two biggest are Acme Inc ($900, critical, 18 days inactive) and Globex ($650, high).
+> **Agent:** _(calls `get_mrr_at_risk`, then `get_at_risk_customers`)_ You have $4,200 MRR at risk across 7 active alerts. The two biggest are Acme Inc ($900, critical, 18 days inactive) and Globex ($650, high).
 >
 > **You:** Note that I emailed Acme today and mark their alert as contacted.
 >
-> **Agent:** *(calls `add_customer_note` and `mark_alert_contacted`)* Done. Logged the note on Acme and moved the alert to contacted.
+> **Agent:** _(calls `add_customer_note` and `mark_alert_contacted`)_ Done. Logged the note on Acme and moved the alert to contacted.
 
 ## Configuration
 
-| Variable | Required | Default | Description |
-|----------|----------|---------|-------------|
-| `RETAIN_API_KEY` | yes | (none) | Agent key from Settings → Agent keys. |
-| `RETAIN_API_URL` | no | `https://api.retain.so` | Override the API base URL (self-host / staging). |
+| Variable         | Required | Default                 | Description                                      |
+| ---------------- | -------- | ----------------------- | ------------------------------------------------ |
+| `RETAIN_API_KEY` | yes      | (none)                  | Agent key from Settings → Agent keys.            |
+| `RETAIN_API_URL` | no       | `https://api.retain.so` | Override the API base URL (self-host / staging). |
 
 ## Development
 
