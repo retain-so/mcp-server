@@ -1,9 +1,7 @@
 /** Wrap any JSON-serialisable value as MCP text content. */
 export function jsonContent(data: unknown) {
   return {
-    content: [
-      { type: 'text' as const, text: JSON.stringify(data, null, 2) },
-    ],
+    content: [{ type: 'text' as const, text: JSON.stringify(data, null, 2) }],
   };
 }
 

@@ -1,7 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { retain } from '../../client.js';
-import { jsonContent, errorContent } from '../../format.js';
+import { errorContent, jsonContent } from '../../format.js';
 
 export function registerGetActiveAlerts(server: McpServer) {
   server.registerTool(
@@ -28,6 +28,6 @@ export function registerGetActiveAlerts(server: McpServer) {
       } catch (error) {
         return errorContent(error);
       }
-    }
+    },
   );
 }

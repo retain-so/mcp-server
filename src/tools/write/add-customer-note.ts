@@ -1,7 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { retain } from '../../client.js';
-import { jsonContent, errorContent } from '../../format.js';
+import { errorContent, jsonContent } from '../../format.js';
 
 export function registerAddCustomerNote(server: McpServer) {
   server.registerTool(
@@ -9,7 +9,7 @@ export function registerAddCustomerNote(server: McpServer) {
     {
       title: 'Add customer note',
       description:
-        "Add a note to a customer's active alert — useful to document outreach done outside Retain. Requires a read+write agent key.",
+        "Add a note to a customer's active alert. Useful to document outreach done outside Retain. Requires a read+write agent key.",
       inputSchema: {
         customer_id: z.string().describe('Customer id (UUID).'),
         content: z.string().min(1).describe('Note text.'),
@@ -19,12 +19,12 @@ export function registerAddCustomerNote(server: McpServer) {
       try {
         const data = await retain.post(
           `/agent/customers/${encodeURIComponent(customer_id)}/notes`,
-          { content }
+          { content },
         );
         return jsonContent(data);
       } catch (error) {
         return errorContent(error);
       }
-    }
+    },
   );
 }

@@ -1,6 +1,6 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { retain } from '../../client.js';
-import { jsonContent, errorContent } from '../../format.js';
+import { errorContent, jsonContent } from '../../format.js';
 
 export function registerGetMrrAtRisk(server: McpServer) {
   server.registerTool(
@@ -18,6 +18,6 @@ export function registerGetMrrAtRisk(server: McpServer) {
       } catch (error) {
         return errorContent(error);
       }
-    }
+    },
   );
 }

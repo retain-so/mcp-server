@@ -1,7 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { retain } from '../../client.js';
-import { jsonContent, errorContent } from '../../format.js';
+import { errorContent, jsonContent } from '../../format.js';
 
 export function registerArchiveAlert(server: McpServer) {
   server.registerTool(
@@ -22,12 +22,12 @@ export function registerArchiveAlert(server: McpServer) {
       try {
         const data = await retain.post(
           `/agent/alerts/${encodeURIComponent(alert_id)}/archive`,
-          reason ? { reason } : undefined
+          reason ? { reason } : undefined,
         );
         return jsonContent(data);
       } catch (error) {
         return errorContent(error);
       }
-    }
+    },
   );
 }

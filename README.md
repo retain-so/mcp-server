@@ -92,7 +92,7 @@ Coming soon: `send_retention_email` (trigger a templated retention email).
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `RETAIN_API_KEY` | yes | — | Agent key from Settings → Agent keys. |
+| `RETAIN_API_KEY` | yes | (none) | Agent key from Settings → Agent keys. |
 | `RETAIN_API_URL` | no | `https://api.retain.so` | Override the API base URL (self-host / staging). |
 
 ## Development

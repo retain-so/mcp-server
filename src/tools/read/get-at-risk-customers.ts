@@ -1,7 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { retain } from '../../client.js';
-import { jsonContent, errorContent } from '../../format.js';
+import { errorContent, jsonContent } from '../../format.js';
 
 export function registerGetAtRiskCustomers(server: McpServer) {
   server.registerTool(
@@ -35,12 +35,12 @@ export function registerGetAtRiskCustomers(server: McpServer) {
         }
         const query = params.toString();
         const data = await retain.get(
-          `/agent/customers/at-risk${query ? `?${query}` : ''}`
+          `/agent/customers/at-risk${query ? `?${query}` : ''}`,
         );
         return jsonContent(data);
       } catch (error) {
         return errorContent(error);
       }
-    }
+    },
   );
 }
