@@ -1,0 +1,46 @@
+{
+  "name": "@retain/mcp-server",
+  "version": "0.1.0",
+  "description": "Model Context Protocol server for Retain — let AI agents query churn risk and act on retention.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "retain-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "retain",
+    "churn",
+    "customer-success",
+    "ai-agents"
+  ],
+  "homepage": "https://retain.so",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/retain-so/mcp-server.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.41",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
