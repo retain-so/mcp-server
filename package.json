@@ -1,6 +1,6 @@
 {
   "name": "@retain-so/mcp-server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Model Context Protocol server for Retain: let AI agents query churn risk and act on retention.",
   "mcpName": "io.github.retain-so/mcp-server",
   "license": "MIT",
