@@ -1,9 +1,12 @@
 {
-  "name": "@retain/mcp-server",
+  "name": "@retain-so/mcp-server",
   "version": "0.1.0",
   "description": "Model Context Protocol server for Retain: let AI agents query churn risk and act on retention.",
   "license": "MIT",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "retain-mcp": "dist/index.js"
   },
