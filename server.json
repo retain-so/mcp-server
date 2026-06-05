@@ -1,0 +1,29 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.retain-so/mcp-server",
+  "description": "Model Context Protocol server for Retain: let AI agents query churn risk and act on retention.",
+  "repository": {
+    "url": "https://github.com/retain-so/mcp-server",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@retain-so/mcp-server",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Your API key from Retain",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "RETAIN_API_KEY"
+        }
+      ]
+    }
+  ]
+}
