@@ -2,7 +2,7 @@
 
 Let your AI agent see who is about to churn, and do something about it.
 
-`@retain/mcp-server` connects [Retain](https://retain.so) to any MCP client (Claude Code, Claude Desktop, Cursor, Windsurf, and friends). Ask in natural language which customers are at risk, pull a customer's full health profile, check MRR at risk, and log outreach, all without opening the dashboard.
+`@retain-so/mcp-server` connects [Retain](https://retain.so) to any MCP client (Claude Code, Claude Desktop, Cursor, Windsurf, and friends). Ask in natural language which customers are at risk, pull a customer's full health profile, check MRR at risk, and log outreach, all without opening the dashboard.
 
 Retain is an AI-first churn prevention and customer analytics platform. This server is the bridge between your agent and your Retain data.
 
@@ -32,7 +32,7 @@ Act (needs a read+write key):
 ### Claude Code
 
 ```bash
-claude mcp add retain --env RETAIN_API_KEY=rk_agent_xxx -- npx -y @retain/mcp-server
+claude mcp add retain --env RETAIN_API_KEY=rk_agent_xxx -- npx -y @retain-so/mcp-server
 ```
 
 ### Claude Desktop (`claude_desktop_config.json`)
@@ -42,7 +42,7 @@ claude mcp add retain --env RETAIN_API_KEY=rk_agent_xxx -- npx -y @retain/mcp-se
   "mcpServers": {
     "retain": {
       "command": "npx",
-      "args": ["-y", "@retain/mcp-server"],
+      "args": ["-y", "@retain-so/mcp-server"],
       "env": { "RETAIN_API_KEY": "rk_agent_xxx" }
     }
   }
@@ -56,7 +56,7 @@ claude mcp add retain --env RETAIN_API_KEY=rk_agent_xxx -- npx -y @retain/mcp-se
   "mcpServers": {
     "retain": {
       "command": "npx",
-      "args": ["-y", "@retain/mcp-server"],
+      "args": ["-y", "@retain-so/mcp-server"],
       "env": { "RETAIN_API_KEY": "rk_agent_xxx" }
     }
   }
